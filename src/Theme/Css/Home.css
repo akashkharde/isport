@@ -1,0 +1,60 @@
+.content {
+    background-color: #fff;
+  }
+  
+  .homeHeader {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 100%;
+  }
+  
+  .headerDate {
+    /* margin-top: 60px; */
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 51px;
+    justify-content: space-between;
+   
+  }
+  
+  .headerDateMap {
+    border: 1px solid #dee1e6;
+    padding: 11px;
+    border-radius: 23px;
+    background-color: #dee1e6;
+  }
+  
+  .headerDateMap:hover {
+    cursor: pointer;
+  }
+  .matchesContainer {
+    border: 1px solid black;
+    width: 600px;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin: auto;
+    margin-top: 120px;
+    border-radius: 30px;
+}
+  .displayMatch {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+  .displayMatch > div {
+    background-color: #f4f4f4;
+    
+}
+  
+div {
+  text-align: center;
+}
+  .displayMatch > div:hover {
+    cursor: pointer;
+    background-color: #ebebeb;
+  }
+  

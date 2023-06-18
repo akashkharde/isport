@@ -1,0 +1,73 @@
+.detailsCon {
+    margin-top: 60px;
+}
+.table {
+margin-top: 5px;
+margin-bottom: 50px;
+}
+
+.selections {
+    margin-right: 10px;
+  }
+  
+  .selectionItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  .selectionLabel {
+    margin-right: 5px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .selectionDropdown {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .legsItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  .legsLabel {
+    margin-right: 5px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .legsDropdown {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+.table-container {
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .bet-table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 0 auto;
+
+  }
+  
+  .bet-table th,
+  .bet-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .bet-table th {
+    background-color: #f2f2f2;
+  }
+  
+  
+  

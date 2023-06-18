@@ -77,7 +77,12 @@ function Home() {
         <div className="homeHeader">
           <header className="headerDate">
             {dates.map((date) => (
-              <div className="headerDateMap" key={date} onClick={() => handleDateClick(date)}>
+              <div
+                className={`headerDateMap ${selectedDate === date ? 'active' : ''}`}
+                key={date}
+                onClick={() => handleDateClick(date)}
+                style={{ backgroundColor: selectedDate === date ? 'green' : '#f4f4f4' }}
+              >
                 {date}
               </div>
             ))}
@@ -92,7 +97,7 @@ function Home() {
                   {index === 0 || matches[index - 1].Country !== match.Country ? (
                     <div>
                       {index !== 0}
-                      <p style={{ backgroundColor: 'red', padding: 10, fontSize:19 }}>{match.Country}</p>
+                      <p style={{ backgroundColor: 'red', padding: 10, fontSize: 19 }}>{match.Country}</p>
                     </div>
                   ) : null}
                   <p>{match.Team1Name} {match.MatchTime} {match.Team2Name}

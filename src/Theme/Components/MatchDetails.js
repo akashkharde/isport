@@ -3,7 +3,7 @@ import Header from '../Container/Header';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import '../Css/MatchDetails.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchSelections, fetchBetBuilderBets } from '../ApiServices/index';
+import { fetchSelections, fetchBetBuilderBets, fetchMarkets } from '../ApiServices/index';
 
 function MatchDetails() {
   const navigate = useNavigate();
@@ -25,38 +25,28 @@ function MatchDetails() {
     setSelectedMatch(matchData);
   }, [matchData]);
 
-  const fetchMarkets = async () => {
+  const fetchMarketsData = async () => {
     try {
-      const response = await fetch(
-        'http://cms.bettorlogic.com/api/BetBuilder/GetMarkets?sports=1'
-      );
-      const data = await response.json();
+      const data = await fetchMarkets();
       setMarkets(data);
     } catch (error) {
       console.error('Error fetching markets:', error);
     }
   };
 
-  const fetchLegs = async () => {
+  const fetchLegsData = async () => {
     try {
-      const response = await fetch(
-        'http://cms.bettorlogic.com/api/BetBuilder/GetSelections?sports=1'
-      );
-      const data = await response.json();
+      const data = await fetchSelections();
       setLegs(data);
     } catch (error) {
       console.error('Error fetching legs:', error);
     }
   };
 
-
-  const fetchBets = async () => {
+  const fetchBetsData = async () => {
     try {
-      const response = await fetch(
-        `http://cms.bettorlogic.com/api/BetBuilder/GetBetBuilderBets?sports=1&matchId=${selectedMatch.MatchId}&marketId=${selectedMarket}&legs=${selectedLeg}&language=en`
-      );
-      const data = await response.json();
-      const arrayBets = [data]
+      const data = await fetchBetBuilderBets(selectedMatch.MatchId, selectedMarket, selectedLeg);
+      const arrayBets = [data];
       setBets(arrayBets);
     } catch (error) {
       console.error('Error fetching bets:', error);
@@ -67,24 +57,24 @@ function MatchDetails() {
   }, [bets])
 
   useEffect(() => {
-    fetchLegs();
+    fetchLegsData();
   }, []);
 
   useEffect(() => {
     if (selectedMatch) {
-      fetchMarkets();
+      fetchMarketsData();
     }
   }, [selectedMatch]);
 
   useEffect(() => {
     if (selectedMarket) {
-      fetchLegs();
+      fetchLegsData();
     }
   }, [selectedMarket]);
 
   useEffect(() => {
     if (selectedLeg) {
-      fetchBets();
+      fetchBetsData();
     }
   }, [selectedLeg]);
 
@@ -99,7 +89,7 @@ function MatchDetails() {
 
   useEffect(() => {
     if (selectedMatch && selectedMarket && selectedLeg) {
-      fetchBets();
+      fetchBetsData();
     }
   }, [selectedMatch, selectedMarket, selectedLeg]);
 
@@ -184,7 +174,7 @@ function MatchDetails() {
                     </thead>
                     <tbody>
                       {bets.map((bet, index) =>
-                        bet.BetBuilderSelections && Array.isArray(bet.BetBuilderSelections) ? (
+                        bet.BetBuilderSelections && Array.isArray(bet.BetBuilderSelections) && bet.BetBuilderSelections.length >  0 ? (
                           bet.BetBuilderSelections.map((selection, subIndex) => (
                             <tr key={bet.MatchId + index + subIndex}>
                               <td>{subIndex + 1}</td>
